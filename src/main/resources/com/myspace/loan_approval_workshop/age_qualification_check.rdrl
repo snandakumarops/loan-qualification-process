@@ -1,0 +1,15 @@
+package com.myspace.loan_approval_workshop;
+
+import java.lang.Number;
+
+rule "age_qualification_check"
+	dialect "mvel"
+	ruleflow-group "age_qualification"
+	when
+		loan : Loan( )
+		Applicant( age > 18 && age < 70 )
+	then
+		modify( loan ) {
+				setAgePreQual( true )
+		}
+end
